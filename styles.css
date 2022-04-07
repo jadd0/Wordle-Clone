@@ -1,0 +1,32 @@
+body {
+    font-family: "Quicksand", sans-serif;
+	font-weight: 350;
+	background-color: #121213;
+	height: auto;
+    color: white;
+}
+
+#canvas {
+    width: auto;
+    display: flex;
+    margin: 0;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+}
+
+.box {
+    display: flex;
+    background-color: inherit;
+    justify-content: center;
+    line-height: 100%;
+    text-align: center;
+    font-size: 3vw;
+    font-weight: bold;
+    margin: 3px;
+    border: 3px solid rgb(99, 99, 99);
+    width: 3vw;
+    height: 3vw;
+}
