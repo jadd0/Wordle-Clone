@@ -71,6 +71,7 @@ function enter() {
 	}
 
 	setTimeout(() => {
+if (currentRow == 5) {
 		if (row[currentRow].dataset.word == chosenWord) {
 			alert("This is the correct word!");
 			window.removeEventListener("keydown", keyPress);
@@ -78,6 +79,7 @@ function enter() {
 			alert(`You lost! The word was ${chosenWord}`);
 			window.removeEventListener("keydown", keyPress);
 		}
+}
 		
 	}, 1400);
 	currentRow++
