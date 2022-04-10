@@ -1,94 +1,104 @@
-var row = document.getElementsByClassName("row");
-var currentRow = 0;
-
-var chosenWord = Ma[Math.floor(Math.random() * Ma.length)];
+let row = document.getElementsByClassName("row");
+let currentRow = 0;
+let box = row[currentRow].getElementsByClassName("box");
+let chosenWord = Ma[Math.floor(Math.random() * Ma.length)];
 console.log(chosenWord);
+let chosenList = chosenWord.split("");
 
 function isLetter(str) {
 	return str.length === 1 && str.match(/[a-z]/i);
 }
 
-window.addEventListener("keydown", function (evt) {
-	if (evt.key == "Enter") {
-		if (row[currentRow].dataset.length != 5) {
-			console.log(row[currentRow].dataset.word.length);
-			alert("Please enter a 5 letter word and try again");
-			return;
+function enter() {
+	let currentWord = row[currentRow].dataset.word.split("");
+	const count = {},
+		result = Array(5).fill(0);
+
+	for (let i = 0; i < currentWord.length; i++) {
+		if (chosenList[i] === currentWord[i]) result[i] = 2;
+		else count[chosenList[i]] = (count[chosenList[i]] || 0) + 1;
+	}
+	for (let i = 0; i < currentWord.length; i++) {
+		if (chosenList[i] === currentWord[i] || !count[currentWord[i]]) continue;
+		count[currentWord[i]]--;
+		result[i] = 1;
+	}
+	for (let i = 0; i < box.length; i++) {
+		box[i].dataset.valid = result[i];
+	}
+
+	if (row[currentRow].dataset.length != 5) {
+		alert("Please enter a 5 letter word and try again");
+		return;
+	}
+
+	let word = row[currentRow].dataset.word.toLowerCase();
+	if (Ma.indexOf(word) == -1 && Oa.indexOf(word) == -1) {
+		alert("This is not a valid word");
+		return;
+	}
+
+	function colorChange(i, thing) {
+		switch (box[i].dataset.valid) {
+			case "2":
+				thing.style.backgroundColor = "green";
+				break;
+			case "1":
+				thing.style.backgroundColor = "#b59f3b";
+				break;
+			case "0":
+				thing.style.backgroundColor = "#3a3a3c";
+				break;
 		}
+	}
 
-		var word = row[currentRow].dataset.word.toLowerCase();
-		if (Ma.indexOf(word) == -1 && Oa.indexOf(word) == -1) {
-			alert("This is not a valid word");
-			return;
-		}
+	let x = [100, 300, 500, 700, 900];
 
-		var box = row[currentRow].getElementsByClassName("box");
-		function colorChange(i) {
-			if (chosenWord[i] == box[i].dataset.letter) {
-				box[i].dataset.valid = 2;
-				box[i].style.backgroundColor = "green";
-			} else if (chosenWord.indexOf(box[i].dataset.letter) != -1) {
-				box[i].dataset.valid = 1;
-				box[i].style.backgroundColor = "#b59f3b";
-			} else {
-				box[i].dataset.valid = 2;
-				box[i].style.backgroundColor = "#3a3a3c";
-			}
-		}
+	for (let i = 0; i < box.length; i++) {
+		setTimeout(() => {
+			box[i].classList.add("shrunk");
+			colorChange(i, box[i]);
+		}, x[i]);
+	}
 
-	
+	for (let i = 0; i < box.length; i++) {
 		setTimeout(() => {
-			box[0].classList.add("shrunk");
-            colorChange(0)
-		}, 100);
+			let back = document.getElementById(box[i].dataset.letter);
+			colorChange(i, back);
+		}, 1400);
+	}
 
-		setTimeout(() => {
-			box[1].classList.add("shrunk");
-            colorChange(1)
-		}, 300);
-		setTimeout(() => {
-			box[2].classList.add("shrunk");
-            colorChange(2)
-		}, 500);
-		setTimeout(() => {
-			box[3].classList.add("shrunk");
-            colorChange(3)
-		}, 700);
-		setTimeout(() => {
-			box[4].classList.add("shrunk");
-            colorChange(4)
-		}, 900);
-
-        if (row[currentRow].dataset.word == chosenWord) {
+	setTimeout(() => {
+		if (row[currentRow].dataset.word == chosenWord) {
 			alert("This is the correct word!");
+			window.removeEventListener("keydown", keyPress);
 		} else if (currentRow == 5 && row[5].dataset.word != chosenWord) {
 			alert(`You lost! The word was ${chosenWord}`);
+			window.removeEventListener("keydown", keyPress);
 		}
-
-		setTimeout(() => {
-			currentRow++;
-		},1100);
+		currentRow +=1
+	}, 1400);
 
 
-        
 
-	} 
-    else if (evt.key == "Backspace") {
-		word = row[currentRow].dataset.word;
-		var word1 = word.substring(0, word.length - 1);
-		console.log(word1);
-		row[currentRow].dataset.word = word1;
+	return;
+}
+
+function backspace() {
+	let word = row[currentRow].dataset.word;
+	let word1 = word.substring(0, word.length - 1);
+	row[currentRow].dataset.word = word1;
+	row[currentRow].dataset.length = row[currentRow].dataset.word.length;
+}
+
+function write(key) {
+	let box = row[currentRow].getElementsByClassName("box");
+	if (row[currentRow].dataset.word.length != 5 && isLetter(key)) {
+		row[currentRow].dataset.word += key;
 		row[currentRow].dataset.length = row[currentRow].dataset.word.length;
 	}
 
-	if (row[currentRow].dataset.word.length != 5 && isLetter(evt.key)) {
-		row[currentRow].dataset.word += evt.key;
-		row[currentRow].dataset.length = row[currentRow].dataset.word.length;
-	}
-
-	var box = row[currentRow].getElementsByClassName("box");
-	console.log(box);
-	for (var i = 0; i < row.length; i++) {
+	for (let i = 0; i < box.length; i++) {
 		box[i].dataset.letter = row[currentRow].dataset.word[i];
 
 		if (box[i].dataset.letter.length == 1) {
@@ -97,4 +107,18 @@ window.addEventListener("keydown", function (evt) {
 			box[i].innerHTML = "";
 		}
 	}
+}
+
+function keyPress(letter) {
+	if (letter == "Enter") {
+		enter(letter);
+		
+	} else if (letter == "Backspace") {
+		backspace();
+	}
+	write(letter);
+}
+
+window.addEventListener("keydown", function (evt) {
+	keyPress(evt.key);
 });

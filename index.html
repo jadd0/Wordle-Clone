@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,69 +9,113 @@
     <title>Jadd's Wordle Clone</title>
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
-    <script src="words.js"></script>
-    <script type="text/javascript" src="scripts.js"></script>
 
 
-    
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
     <div id="canvas">
         <!-- 0 = red 1 = yellow 2 = green -->
-        <!-- TODO add length dataset to ensure that it is 5 letters long -->
-        <!-- TODO -->
         <div class="displays">
             <div class="row" data-word="" data-length="0">
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div> 
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
             </div>
             <div class="row" data-word="" data-length="0">
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
             </div>
             <div class="row" data-word="" data-length="0">
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
             </div>
             <div class="row" data-word="" data-length="0">
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
             </div>
             <div class="row" data-word="" data-length="0">
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
             </div>
             <div class="row" data-word="" data-length="0">
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
-                <div class="box" data-letter="" data-length="0"></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
+                <div class="box" data-letter="" data-valid=""></div>
             </div>
-            
+
         </div>
     </div>
 
+    
 
+
+
+    <section class="keyboard">
+        <div class="Row">
+            <button class="key" id="q" type="button" onclick="keyPress('q')">Q</button>
+            <button class="key" id="w" type="button" onclick="keyPress('w')">W</button>
+            <button class="key" id="e" type="button" onclick="keyPress('e')">E</button>
+            <button class="key" id="r" type="button" onclick="keyPress('r')">R</button>
+            <button class="key" id="t" type="button" onclick="keyPress('t')">T</button>
+            <button class="key" id="y" type="button" onclick="keyPress('y')">Y</button>
+            <button class="key" id="u" type="button" onclick="keyPress('u')">U</button>
+            <button class="key" id="i" type="button" onclick="keyPress('i')">I</button>
+            <button class="key" id="o" type="button" onclick="keyPress('o')">O</button>
+            <button class="key" id="p" type="button" onclick="keyPress('p')">P</button>
+        </div>
+        <div class="Row">
+            <button class="key" id="a" type="button" onclick="keyPress('a')">A</button>
+            <button class="key" id="s" type="button" onclick="keyPress('s')">S</button>
+            <button class="key" id="d" type="button" onclick="keyPress('d')">D</button>
+            <button class="key" id="f" type="button" onclick="keyPress('f')">F</button>
+            <button class="key" id="g" type="button" onclick="keyPress('g')">G</button>
+            <button class="key" id="h" type="button" onclick="keyPress('h')">H</button>
+            <button class="key" id="j" type="button" onclick="keyPress('j')">J</button>
+            <button class="key" id="k" type="button" onclick="keyPress('k')">K</button>
+            <button class="key" id="l" type="button" onclick="keyPress('l')">L</button>
+        </div>
+        <div class="Row">
+            <button class="key1" type="button" onclick="keyPress('Enter')">ENTER</button>
+            <button class="key" id="z" type="button" onclick="keyPress('z')">Z</button>
+            <button class="key" id="x" type="button" onclick="keyPress('x')">X</button>
+            <button class="key" id="c" type="button" onclick="keyPress('c')">C</button>
+            <button class="key" id="v" type="button" onclick="keyPress('v')">V</button>
+            <button class="key" id="b" type="button" onclick="keyPress('b')">B</button>
+            <button class="key" id="n" type="button" onclick="keyPress('n')">N</button>
+            <button class="key" id="m" type="button" onclick="keyPress('m')">M</button>
+            <button class="key1" type="button" onclick="keyPress('Backspace')">BACK</button>
+            
+        </div>
+    </section>
+        
+        
 
     
+
+
+
+    <script src="words.js"></script>
+    <script type="text/javascript" src="scripts.js"></script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
@@ -78,4 +123,5 @@
         console.log("hello")
     </script>
 </body>
+
 </html>
