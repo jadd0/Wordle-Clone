@@ -7,6 +7,7 @@ body {
 }
 
 #canvas {
+    margin-top: 20px;
 	width: auto;
 	display: flex;
 	margin: 0;
