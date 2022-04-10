@@ -71,7 +71,15 @@ function enter() {
 	}
 
 	setTimeout(() => {
-if (currentRow == row.length) {
+
+if (row[currentRow-1].dataset.word == chosenWord) {
+
+alert("This is the correct word!");
+		window.removeEventListener("keydown", keyPress); 
+
+}
+
+else if (currentRow == row.length) {
 
 		
 if (row[currentRow] != chosenWord) {
@@ -87,12 +95,6 @@ alert("This is the correct word!");
 
 }
 
-else if (row[currentRow-1].dataset.word == chosenWord) {
-
-alert("This is the correct word!");
-		window.removeEventListener("keydown", keyPress); 
-
-}
 		
 	}, 1400);
 	currentRow++
