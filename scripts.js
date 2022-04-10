@@ -72,13 +72,13 @@ function enter() {
 
 	setTimeout(() => {
 if (currentRow == 6) {
-		if (row[currentRow].dataset.word == chosenWord) {
-			alert("This is the correct word!");
-			window.removeEventListener("keydown", keyPress);
-		} else {
+		//if (row[currentRow].dataset.word == chosenWord) {
+			//alert("This is the correct word!");
+			//window.removeEventListener("keydown", keyPress);
+		//} else {
 			alert(`You lost! The word was ${chosenWord}`);
 			window.removeEventListener("keydown", keyPress);
-		}
+		//}
 }
 		
 	}, 1400);
