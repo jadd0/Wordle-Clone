@@ -6,8 +6,8 @@ body {
 	color: white;
 }
 
-#canvas {
-    margin-top: 20px;
+.canvas {
+    padding: 10px; 
 	width: auto;
 	display: flex;
 	margin: 0;
