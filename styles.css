@@ -47,7 +47,7 @@ body {
 .keyboard {
     height: 35vh;
 	margin: 0;
-    /* margin-top: 10px; */
+    margin-top: 10px;
 	display: grid;
 	justify-content: center;
 }
@@ -76,6 +76,7 @@ body {
 	display: flex;
 	justify-content: center;
 	margin: 0;
+    padding: 0px;
 }
 
 .Row .key,
