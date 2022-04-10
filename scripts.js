@@ -87,7 +87,7 @@ alert("This is the correct word!");
 
 }
 
-else if (row[currentRow].dataset.word == chosenWord) {
+else if (row[currentRow-1].dataset.word == chosenWord) {
 
 alert("This is the correct word!");
 		window.removeEventListener("keydown", keyPress); 
