@@ -71,7 +71,7 @@ function enter() {
 	}
 
 	setTimeout(() => {
-if (currentRow == 5) {
+if (currentRow == 6) {
 		if (row[currentRow].dataset.word == chosenWord) {
 			alert("This is the correct word!");
 			window.removeEventListener("keydown", keyPress);
