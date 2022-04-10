@@ -45,7 +45,6 @@ body {
 }
 
 .keyboard {
-    height: 35vh;
 	margin: 0;
     margin-top: 10px;
 	display: grid;
