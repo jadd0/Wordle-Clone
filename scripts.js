@@ -11,6 +11,7 @@ function isLetter(str) {
 
 function enter() {
 	let currentWord = row[currentRow].dataset.word.split("");
+	let box = row[currentRow].getElementsByClassName("box");
 	const count = {},
 		result = Array(5).fill(0);
 
@@ -56,6 +57,7 @@ function enter() {
 
 	for (let i = 0; i < box.length; i++) {
 		setTimeout(() => {
+			box[i].classList.remove("types");
 			box[i].classList.add("shrunk");
 			colorChange(i, box[i]);
 		}, x[i]);
@@ -76,9 +78,9 @@ function enter() {
 			alert(`You lost! The word was ${chosenWord}`);
 			window.removeEventListener("keydown", keyPress);
 		}
-		currentRow +=1
+		
 	}, 1400);
-
+	currentRow++
 
 
 	return;
@@ -87,8 +89,13 @@ function enter() {
 function backspace() {
 	let word = row[currentRow].dataset.word;
 	let word1 = word.substring(0, word.length - 1);
+	let box = row[currentRow].getElementsByClassName("box");
+	if (row[currentRow].dataset.word.length > 0) {
+		box[row[currentRow].dataset.word.length -1].classList.remove("types")
+	}
 	row[currentRow].dataset.word = word1;
 	row[currentRow].dataset.length = row[currentRow].dataset.word.length;
+	
 }
 
 function write(key) {
@@ -102,10 +109,12 @@ function write(key) {
 		box[i].dataset.letter = row[currentRow].dataset.word[i];
 
 		if (box[i].dataset.letter.length == 1) {
+			box[i].classList.add("types")
 			box[i].innerHTML = box[i].dataset.letter.toUpperCase();
 		} else {
 			box[i].innerHTML = "";
 		}
+		
 	}
 }
 
