@@ -84,7 +84,7 @@ else {
 alert("This is the correct word!");
 		window.removeEventListener("keydown", keyPress); }
 
-		
+	}	
 }
 
 else if (row[currentRow].dataset.word == chosenWord) {
