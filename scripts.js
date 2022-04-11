@@ -20,7 +20,8 @@ function enter() {
 		else count[chosenList[i]] = (count[chosenList[i]] || 0) + 1;
 	}
 	for (let i = 0; i < currentWord.length; i++) {
-		if (chosenList[i] === currentWord[i] || !count[currentWord[i]]) continue;
+		if (chosenList[i] === currentWord[i] || !count[currentWord[i]])
+			continue;
 		count[currentWord[i]]--;
 		result[i] = 1;
 	}
@@ -71,34 +72,20 @@ function enter() {
 	}
 
 	setTimeout(() => {
-
-if (row[currentRow-1].dataset.word == chosenWord) {
-
-alert("This is the correct word!");
-		window.removeEventListener("keydown", keyPress); 
-
-}
-
-else if (currentRow == row.length) {
-
-		
-if (row[currentRow] != chosenWord) {
-			alert(`You lost! The word was ${chosenWord}`);
+		if (row[currentRow - 1].dataset.word == chosenWord) {
+			alert("This is the correct word!");
 			window.removeEventListener("keydown", keyPress);
-}
-
-else {
-
-alert("This is the correct word!");
-		window.removeEventListener("keydown", keyPress); }
-
-
-}
-
-		
+		} else if (currentRow == row.length) {
+			if (row[currentRow] != chosenWord) {
+				alert(`You lost! The word was ${chosenWord}`);
+				window.removeEventListener("keydown", keyPress);
+			} else {
+				alert("This is the correct word!");
+				window.removeEventListener("keydown", keyPress);
+			}
+		}
 	}, 1400);
-	currentRow++
-
+	currentRow++;
 
 	return;
 }
@@ -108,11 +95,10 @@ function backspace() {
 	let word1 = word.substring(0, word.length - 1);
 	let box = row[currentRow].getElementsByClassName("box");
 	if (row[currentRow].dataset.word.length > 0) {
-		box[row[currentRow].dataset.word.length -1].classList.remove("types")
+		box[row[currentRow].dataset.word.length - 1].classList.remove("types");
 	}
 	row[currentRow].dataset.word = word1;
 	row[currentRow].dataset.length = row[currentRow].dataset.word.length;
-	
 }
 
 function write(key) {
@@ -126,19 +112,17 @@ function write(key) {
 		box[i].dataset.letter = row[currentRow].dataset.word[i];
 
 		if (box[i].dataset.letter.length == 1) {
-			box[i].classList.add("types")
+			box[i].classList.add("types");
 			box[i].innerHTML = box[i].dataset.letter.toUpperCase();
 		} else {
 			box[i].innerHTML = "";
 		}
-		
 	}
 }
 
 function keyPress(letter) {
 	if (letter == "Enter") {
 		enter(letter);
-		
 	} else if (letter == "Backspace") {
 		backspace();
 	}
