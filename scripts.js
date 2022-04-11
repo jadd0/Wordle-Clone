@@ -12,6 +12,12 @@ function isLetter(str) {
 function enter() {
 	let currentWord = row[currentRow].dataset.word.split("");
 	let box = row[currentRow].getElementsByClassName("box");
+
+	
+
+	console.log(row[currentRow].classList)
+
+
 	const count = {},
 		result = Array(5).fill(0);
 
@@ -29,16 +35,17 @@ function enter() {
 		box[i].dataset.valid = result[i];
 	}
 
-	if (row[currentRow].dataset.length != 5) {
-		alert("Please enter a 5 letter word and try again");
-		return;
-	}
-
 	let word = row[currentRow].dataset.word.toLowerCase();
-	if (Ma.indexOf(word) == -1 && Oa.indexOf(word) == -1) {
+	if (row[currentRow].dataset.length != 5 || Ma.indexOf(word) == -1 && Oa.indexOf(word) == -1) {
+		row[currentRow].classList.add("shake1")
+		if (row[currentRow].dataset.length != 5) {
+			alert("Please enter a 5 letter word and try again");
+			return;
+		}
 		alert("This is not a valid word");
-		return;
+		return
 	}
+	
 
 	function colorChange(i, thing) {
 		switch (box[i].dataset.valid) {
@@ -125,6 +132,7 @@ function write(key) {
 function keyPress(letter) {
 	if (letter == "Enter") {
 		enter(letter);
+		row[currentRow].classList.remove("shake1")
 	} else if (letter == "Backspace") {
 		backspace();
 	}
