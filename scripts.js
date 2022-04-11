@@ -95,6 +95,7 @@ function backspace() {
 	let word1 = word.substring(0, word.length - 1);
 	let box = row[currentRow].getElementsByClassName("box");
 	if (row[currentRow].dataset.word.length > 0) {
+		box[row[currentRow].dataset.word.length - 1].classList.add("del1");
 		box[row[currentRow].dataset.word.length - 1].classList.remove("types");
 	}
 	row[currentRow].dataset.word = word1;
@@ -112,6 +113,7 @@ function write(key) {
 		box[i].dataset.letter = row[currentRow].dataset.word[i];
 
 		if (box[i].dataset.letter.length == 1) {
+			box[i].classList.remove("del1");
 			box[i].classList.add("types");
 			box[i].innerHTML = box[i].dataset.letter.toUpperCase();
 		} else {
