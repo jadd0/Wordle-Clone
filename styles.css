@@ -140,7 +140,7 @@ body {
 }
 
 .shake1 {
-	animation: shake 0.2s linear;
+	animation: shake 1s linear;
 }
 
 .keyboard {
