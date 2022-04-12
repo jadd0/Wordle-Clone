@@ -34,9 +34,6 @@ body {
 	50% {
 		-webkit-transform: scale(1.3);
 	}
-	100% {
-		-webkit-transform: scale(1);
-	}
 }
 
 @keyframes type {
@@ -54,10 +51,6 @@ body {
 	50% {
 		-webkit-transform: translateY(-10px);
 	}
-
-	100% {
-		-webkit-transform: translateY(0px);
-	}
 }
 @keyframes del {
 	0% {
@@ -73,9 +66,6 @@ body {
 	}
 	50% {
 		-webkit-transform: translateY(4px);
-	}
-	100% {
-		-webkit-transform: translateY(0px);
 	}
 }
 @keyframes shake {
@@ -108,9 +98,6 @@ body {
 
 	75% {
 		-webkit-transform: translateX(-5px);
-	}
-	100% {
-		-webkit-transform: translateX(0px);
 	}
 }
 .box {
