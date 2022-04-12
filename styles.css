@@ -140,6 +140,10 @@ body {
 }
 
 .shake1 {
+	-webkit-animation-name: shake;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
 	animation: shake 1s linear;
 }
 
