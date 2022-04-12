@@ -77,8 +77,8 @@ body {
 
     75% {
 		transform: translateX(-5px);
-        -webkit-transform: translateX(5px);
-        -ms-transform: translateX(5px);
+        -webkit-transform: translateX(-5px);
+        -ms-transform: translateX(-5px);
 	}
 }
 
