@@ -45,6 +45,8 @@ function enter() {
 		alert("This is not a valid word");
 		return
 	}
+
+	
 	
 
 	function colorChange(i, thing) {

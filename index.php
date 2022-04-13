@@ -27,6 +27,8 @@
     </script>
     <!-- End Google Tag Manager -->
 
+    
+
 
 
     <title>Jadd's Wordle Clone</title>
@@ -39,10 +41,14 @@
 </head>
 
 <body>
+    <?php
+            echo "hdfguhbgzusgdfghdhhfgh";       
+            ?>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V9TNQN" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div class="canvas">
         <!-- 0 = red 1 = yellow 2 = green -->
         <div class="displays">
