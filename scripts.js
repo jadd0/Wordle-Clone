@@ -5,6 +5,7 @@ let chosenWord = Ma[Math.floor(Math.random() * Ma.length)];
 console.log(chosenWord);
 let chosenList = chosenWord.split("");
 let done = false;
+document.cookie = "SameSite=lax;secure=true;arrayCookie=";
 
 function isLetter(str) {
 	return str.length === 1 && str.match(/[a-z]/i);
@@ -14,10 +15,7 @@ function enter() {
 	let currentWord = row[currentRow].dataset.word.split("");
 	let box = row[currentRow].getElementsByClassName("box");
 
-	
-
-	console.log(row[currentRow].classList)
-
+	console.log(row[currentRow].classList);
 
 	const count = {},
 		result = Array(5).fill(0);
@@ -37,18 +35,18 @@ function enter() {
 	}
 
 	let word = row[currentRow].dataset.word.toLowerCase();
-	if (row[currentRow].dataset.length != 5 || Ma.indexOf(word) == -1 && Oa.indexOf(word) == -1) {
-		row[currentRow].classList.add("shake1")
+	if (
+		row[currentRow].dataset.length != 5 ||
+		(Ma.indexOf(word) == -1 && Oa.indexOf(word) == -1)
+	) {
+		row[currentRow].classList.add("shake1");
 		if (row[currentRow].dataset.length != 5) {
 			alert("Please enter a 5 letter word and try again");
 			return;
 		}
 		alert("This is not a valid word");
-		return
+		return;
 	}
-
-	
-	
 
 	function colorChange(i, thing) {
 		switch (box[i].dataset.valid) {
@@ -84,17 +82,23 @@ function enter() {
 	setTimeout(() => {
 		if (row[currentRow - 1].dataset.word == chosenWord) {
 			alert("This is the correct word!");
-done = true;
+			document.cookie = `SameSite=lax;secure=true;arrayCookie=${currentRow},`;
+			console.log(document.cookie);
+			done = true;
 			window.removeEventListener("keydown", keyPress);
 		} else if (currentRow == row.length) {
 			if (row[currentRow] != chosenWord) {
 				alert(`You lost! The word was ${chosenWord}`);
+				document.cookie = "SameSite=lax;secure=true;arrayCookie="+currentRow+",";
+				console.log(document.cookie);
 				window.removeEventListener("keydown", keyPress);
-done = true;
+				done = true;
 			} else {
 				alert("This is the correct word!");
+				document.cookie = "SameSite=lax;secure=true;arrayCookie="+currentRow+",";
+				console.log(document.cookie);
 				window.removeEventListener("keydown", keyPress);
-done=true;
+				done = true;
 			}
 		}
 	}, 1400);
@@ -138,19 +142,23 @@ function write(key) {
 function keyPress(letter) {
 	if (letter == "Enter" && done == false) {
 		enter(letter);
-		row[currentRow].classList.remove("shake1")
+		row[currentRow].classList.remove("shake1");
 	} else if (letter == "Backspace" && done == false) {
 		backspace();
 	}
-if (done == false) {
-	write(letter);
-}
+	if (done == false) {
+		write(letter);
+	}
 }
 
 window.addEventListener("keydown", function (evt) {
 	keyPress(evt.key);
 });
 
-document.addEventListener('dblclick', function(event) {
-    event.preventDefault();
-}, { passive: false });
+document.addEventListener(
+	"dblclick",
+	function (event) {
+		event.preventDefault();
+	},
+	{ passive: false }
+);
