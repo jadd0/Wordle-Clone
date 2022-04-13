@@ -144,3 +144,7 @@ function keyPress(letter) {
 window.addEventListener("keydown", function (evt) {
 	keyPress(evt.key);
 });
+
+document.addEventListener('dblclick', function(event) {
+    event.preventDefault();
+}, { passive: false });
