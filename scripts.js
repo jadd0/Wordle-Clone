@@ -4,6 +4,7 @@ let box = row[currentRow].getElementsByClassName("box");
 let chosenWord = Ma[Math.floor(Math.random() * Ma.length)];
 console.log(chosenWord);
 let chosenList = chosenWord.split("");
+let done = false;
 
 function isLetter(str) {
 	return str.length === 1 && str.match(/[a-z]/i);
@@ -83,14 +84,17 @@ function enter() {
 	setTimeout(() => {
 		if (row[currentRow - 1].dataset.word == chosenWord) {
 			alert("This is the correct word!");
+done = true;
 			window.removeEventListener("keydown", keyPress);
 		} else if (currentRow == row.length) {
 			if (row[currentRow] != chosenWord) {
 				alert(`You lost! The word was ${chosenWord}`);
 				window.removeEventListener("keydown", keyPress);
+done = true;
 			} else {
 				alert("This is the correct word!");
 				window.removeEventListener("keydown", keyPress);
+done=true;
 			}
 		}
 	}, 1400);
@@ -132,13 +136,15 @@ function write(key) {
 }
 
 function keyPress(letter) {
-	if (letter == "Enter") {
+	if (letter == "Enter" && done == false) {
 		enter(letter);
 		row[currentRow].classList.remove("shake1")
-	} else if (letter == "Backspace") {
+	} else if (letter == "Backspace" && done == false) {
 		backspace();
 	}
+if (done == false) {
 	write(letter);
+}
 }
 
 window.addEventListener("keydown", function (evt) {
