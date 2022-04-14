@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Google Tag Manager -->
@@ -27,7 +27,7 @@
     </script>
     <!-- End Google Tag Manager -->
 
-    
+
 
 
 
@@ -37,7 +37,7 @@
 
 
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -46,7 +46,78 @@
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="canvas">
+    <div id="leaderboard">
+        <div class="h1Holder">
+            <h1>Results</h1>
+        </div>
+
+        <div class="results">
+            <div class="played">
+                <h2>Played</h2>
+            </div>
+
+            <div class="won">
+                <h2>Won</h2>
+
+            </div>
+            <div class="ratio">
+                <h2>Ratio</h2>
+            </div>
+        </div>
+        <div class="spanHolder">
+            <span id="played">1</span>
+            <span id="won">2</span>
+            <span id="ratio">3</span>
+        </div>
+
+        <div class="h1Holder">
+            <h2 class="guess">Guess Distribution</h2>
+        </div>
+        
+
+
+        <div class="dist">
+            <div class="order">
+                1: 
+            </div>
+        </div>
+        <div class="dist">
+            <div class="order">
+                2: 
+            </div>
+        </div>
+        <div class="dist">
+            <div class="order">
+                3: 
+            </div>
+        </div>
+        <div class="dist">
+            <div class="order">
+                4: 
+            </div>
+        </div>
+        <div class="dist">
+            <div class="order">
+                5: 
+            </div>
+        </div>
+        <div class="dist" style="padding: 0 0 10px 0px;">
+            <div class="order">
+                6: 
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    </div>
+
+
+
+
+    <div id="canvas">
         <!-- 0 = red 1 = yellow 2 = green -->
         <div class="displays">
             <div class="row" data-word="" data-length="0">
@@ -99,7 +170,7 @@
 
 
 
-    <section class="keyboard">
+    <section id="keyboard">
         <div class="Row">
             <button class="key" id="q" type="button" onclick="keyPress('q')">Q</button>
             <button class="key" id="w" type="button" onclick="keyPress('w')">W</button>
@@ -136,6 +207,8 @@
 
         </div>
     </section>
+
+
 
 
 

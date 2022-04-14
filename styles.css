@@ -6,7 +6,7 @@ body {
 	color: white;
 }
 
-.canvas {
+#canvas {
 	padding: 30px 0 0 0;
 	width: auto;
 	display: flex;
@@ -143,7 +143,7 @@ body {
 	animation: shake 0.2s linear;
 }
 
-.keyboard {
+#keyboard {
 	margin: 0;
 	margin-top: 10px;
 	display: grid;
@@ -183,7 +183,7 @@ body {
 }
 
 @media only screen and (max-width: 500px) {
-	.keyboard {
+	#keyboard {
 		width: 100%;
 	}
 
@@ -194,4 +194,69 @@ body {
 	.key1 {
 		width: auto;
 	}
+
+	#leaderboard {
+		max-width: 90vw;
+
+	}
+}
+
+#leaderboard {
+	min-height: 90vh;
+	margin: 30px auto;
+	width: 450px;
+	height: auto;
+	background-color:#232324;
+	display:none;
+}
+
+
+
+span {
+	font-size: 25px;
+	font-weight: bold;
+	color: white;
+}
+
+h1 {
+	width: auto;
+	margin:	30px auto;
+}
+
+h2, #won, #played, #ratio {
+	margin: 0 auto;
+}
+
+.played, .won, .ratio, #played, #won, #ratio {
+	display: flex;
+	justify-content: center;
+	width: 33%;
+}
+
+.results, .spanHolder {
+	display: flex;
+	justify-content: center;
+}
+
+.dist {
+	display: flex;
+	width: 100%;
+}
+
+.order {
+	padding: 15px 0px 0px 50px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+
+
+.h1Holder {
+	margin: 0 auto;
+	width: 100%;
+	display: flex;
+}
+
+.guess {
+	margin-top: 20px;
 }

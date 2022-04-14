@@ -1,3 +1,39 @@
+if (document.cookie.split(";").length < 4) {
+	document.cookie =
+		"1=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+	document.cookie =
+		"2=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+	document.cookie =
+		"3=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+	document.cookie =
+		"4=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+	document.cookie =
+		"5=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+	document.cookie =
+		"6=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+	document.cookie =
+		"7=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+	document.cookie =
+		"8=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
+}
+
+document.cookie =
+	"one=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
+document.cookie =
+	"two=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
+document.cookie =
+	"three=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001  00:00:00 GMT";
+document.cookie =
+	"four=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
+document.cookie =
+	"five=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
+document.cookie =
+	"six=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
+document.cookie =
+	"played=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
+document.cookie =
+	"won=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
+
 let row = document.getElementsByClassName("row");
 let currentRow = 0;
 let box = row[currentRow].getElementsByClassName("box");
@@ -5,17 +41,140 @@ let chosenWord = Ma[Math.floor(Math.random() * Ma.length)];
 console.log(chosenWord);
 let chosenList = chosenWord.split("");
 let done = false;
-document.cookie = "SameSite=lax;secure=true;arrayCookie=";
+let won = false;
+
+let one = new Number();
+// console.log(one);
+let two = new Number();
+let three = new Number();
+let four = new Number();
+let five = new Number();
+let six = new Number();
+let seven = new Number();
+let eight = new Number();
 
 function isLetter(str) {
 	return str.length === 1 && str.match(/[a-z]/i);
 }
 
+function getCookieVal() {
+	let cookiearray = document.cookie.split("; ");
+	// console.log(cookiearray);
+	for (let i = 0; i < cookiearray.length; i++) {
+		console.log(cookiearray[i][0], cookiearray[i][2]);
+		
+		if (cookiearray[i][0] == 1) {
+			one = cookiearray[i][2];
+		}
+		else if (cookiearray[i][0] == 2) {
+			two = cookiearray[i][2];
+		}
+		else if (cookiearray[i][0] == 3) {
+			three = cookiearray[i][2];
+		}
+		else if (cookiearray[i][0] == 4) {
+			four = cookiearray[i][2];
+		}
+		else if (cookiearray[i][0] == 5) {
+			five = cookiearray[i][2];
+		}
+		else if (cookiearray[i][0] == 6) {
+			six = cookiearray[i][2];
+		}
+		else if (cookiearray[i][0] == 7) {
+			console.log("hello")
+			seven = cookiearray[i][2];
+		}
+		else if (cookiearray[i][0] == 8) {
+			eight = cookiearray[i][2];
+		}		
+	}
+}
+
+function finished() {
+	done = true;
+	window.removeEventListener("keydown", keyPress);
+
+	getCookieVal();
+
+	switch (currentRow) {
+		case 1:
+			one = parseInt(one);
+			one++
+			document.cookie = `1=${
+				one
+			};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			break;
+		case 2:
+			two = parseInt(two)
+			two++
+		document.cookie = `2=${two
+		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			break;
+		case 3:
+			three = parseInt(three)
+			three++
+		document.cookie = `3=${three
+		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			break;
+		case 4:
+			four = parseInt(onfoure)
+			four++
+		document.cookie = `4=${four
+		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			break;
+		case 5:
+			five = parseInt(five)
+			five++
+		document.cookie = `5=${five
+		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			break;
+		case 6:
+			six = parseInt(six)
+			six++
+		document.cookie = `6=${six
+		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			break;
+	}
+
+	
+
+	if (won == true) {
+		seven = parseInt(seven);
+		seven++
+		document.cookie = `7=${seven};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+	}
+
+	eight = parseInt(eight);
+	console.log(typeof(eight))
+	eight++
+
+	document.cookie = `8=${eight};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+	
+
+	console.log(document.cookie);
+
+
+	let leader = document.getElementById("leaderboard")
+	document.getElementById("played").innerHTML = eight
+	document.getElementById("won").innerHTML = seven
+	let ratio = ((seven) / eight ) * 100
+	document.getElementById("ratio").innerHTML = (Math.ceil(ratio) + "%")
+	leader.style.display= "block"
+	document.getElementById("canvas").style.display = "none"
+	document.getElementById("keyboard").style.display = "none" 	
+
+	let order = document.getElementsByClassName("order")
+	let orderList = [one, two, three, four, five, six, seven, eight]
+	for (let i=0; i<order.length; i++) {
+		order[i].innerHTML += orderList[i]
+	}
+
+}
+
 function enter() {
 	let currentWord = row[currentRow].dataset.word.split("");
 	let box = row[currentRow].getElementsByClassName("box");
-
-	console.log(row[currentRow].classList);
 
 	const count = {},
 		result = Array(5).fill(0);
@@ -82,23 +241,16 @@ function enter() {
 	setTimeout(() => {
 		if (row[currentRow - 1].dataset.word == chosenWord) {
 			alert("This is the correct word!");
-			document.cookie = `SameSite=lax;secure=true;arrayCookie=${currentRow},`;
-			console.log(document.cookie);
-			done = true;
-			window.removeEventListener("keydown", keyPress);
+			won = true;
+			finished();
 		} else if (currentRow == row.length) {
 			if (row[currentRow] != chosenWord) {
 				alert(`You lost! The word was ${chosenWord}`);
-				document.cookie = "SameSite=lax;secure=true;arrayCookie="+currentRow+",";
-				console.log(document.cookie);
-				window.removeEventListener("keydown", keyPress);
-				done = true;
+				finished();
 			} else {
 				alert("This is the correct word!");
-				document.cookie = "SameSite=lax;secure=true;arrayCookie="+currentRow+",";
-				console.log(document.cookie);
-				window.removeEventListener("keydown", keyPress);
-				done = true;
+				won = true;
+				finished();
 			}
 		}
 	}, 1400);
