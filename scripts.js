@@ -1,4 +1,4 @@
-if (document.cookie.split(";").length < 4) {
+if (document.cookie.split(";").length < 6) {
 	document.cookie =
 		"1=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
 	document.cookie =
