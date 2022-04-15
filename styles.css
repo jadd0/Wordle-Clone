@@ -113,7 +113,9 @@ body {
 }
 
 .shake1 {
+	-webkit-animation: shake 0.2s linear;
 	animation: shake 0.2s linear;
+	
 }
 
 #keyboard {
