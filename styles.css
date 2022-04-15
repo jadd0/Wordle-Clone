@@ -69,21 +69,21 @@ body {
 }
 @-webkit-keyframes shake {
 	0% {
-		-webkit-transform: translateX(0px);
+		-webkit-transform: translate3d(0px,0,0);
 	}
 	25% {
-		-webkit-transform: translateX(1px);
+		-webkit-transform: translate3d(5px,0,0);
 	}
 
 	50% {
-		-webkit-transform: translateX(0px);
+		-webkit-transform: translate3d(0px,0,0);
 	}
 
 	75% {
-		-webkit-transform: translateX(-1px);
+		-webkit-transform: translate3d(-5px,0,0);
 	}
 	100% {
-		-webkit-transform: translateX(0px);
+		-webkit-transform: translate3d(0px,0,0);
 	}
 }
 .box {
