@@ -191,15 +191,15 @@ function enter() {
 		switch (box[i].dataset.valid) {
 			case "2":
 				thing.style.backgroundColor = "green";
-				box[i].style.border = "3px solid green";
+				thing.style.border = "3px solid green";
 				break;
 			case "1":
 				thing.style.backgroundColor = "#b59f3b";
-				box[i].style.border = "3px solid #b59f3b";
+				thing.style.border = "3px solid #b59f3b";
 				break;
 			case "0":
 				thing.style.backgroundColor = "#3a3a3c";
-				box[i].style.border = "3px solid #3a3a3c";
+				thing.style.border = "3px solid #3a3a3c";
 				break;
 		}
 
@@ -207,14 +207,19 @@ function enter() {
 		
 	}
 
-	let x = [100, 300, 500, 700, 900];
+	let x = [100, 400, 700, 1000, 1300];
 
 	for (let i = 0; i < box.length; i++) {
 		setTimeout(() => {
 			box[i].classList.remove("types");
 			box[i].classList.add("shrunk");
-			colorChange(i, box[i]);
 		}, x[i]);
+	}
+
+	for (let i = 0; i < box.length; i++) {
+		setTimeout(() => {
+			colorChange(i, box[i]);
+		}, x[i]+310);
 	}
 
 	for (let i = 0; i < box.length; i++) {
