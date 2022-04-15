@@ -59,34 +59,29 @@ function isLetter(str) {
 function getCookieVal() {
 	let cookiearray = document.cookie.split("; ");
 	for (let i = 0; i < cookiearray.length; i++) {
-		let x = cookiearray[i].split("=")
+		let x = cookiearray[i].split("=");
 		if (x[0] == 1) {
 			one = x[1];
-		}
-		else if (x[0] == 2) {
+		} else if (x[0] == 2) {
 			two = x[1];
-		}
-		else if (x[0] == 3) {
+		} else if (x[0] == 3) {
 			three = x[1];
-		}
-		else if (x[0] == 4) {
+		} else if (x[0] == 4) {
 			four = x[1];
-		}
-		else if (x[0] == 5) {
+		} else if (x[0] == 5) {
 			five = x[1];
-		}
-		else if (x[0] == 6) {
+		} else if (x[0] == 6) {
 			six = x[1];
-		}
-		else if (x[0] == 7) {
-			console.log("hello")
+		} else if (x[0] == 7) {
+			console.log("hello");
 			seven = x[1];
-		}
-		else if (x[0] == 8) {
+		} else if (x[0] == 8) {
 			eight = x[1];
-		}		
+		}
 	}
 }
+
+// TODO add cookie to see which character is most common
 
 function finished() {
 	done = true;
@@ -97,76 +92,64 @@ function finished() {
 	switch (currentRow) {
 		case 1:
 			one = parseInt(one);
-			one++
-			document.cookie = `1=${
-				one
-			};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			one++;
+			document.cookie = `1=${one};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 			break;
 		case 2:
-			two = parseInt(two)
-			two++
-		document.cookie = `2=${two
-		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			two = parseInt(two);
+			two++;
+			document.cookie = `2=${two};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 			break;
 		case 3:
-			three = parseInt(three)
-			three++
-		document.cookie = `3=${three
-		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			three = parseInt(three);
+			three++;
+			document.cookie = `3=${three};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 			break;
 		case 4:
-			four = parseInt(four)
-			four++
-		document.cookie = `4=${four
-		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			four = parseInt(four);
+			four++;
+			document.cookie = `4=${four};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 			break;
 		case 5:
-			five = parseInt(five)
-			five++
-		document.cookie = `5=${five
-		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			five = parseInt(five);
+			five++;
+			document.cookie = `5=${five};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 			break;
 		case 6:
-			six = parseInt(six)
-			six++
-		document.cookie = `6=${six
-		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
+			six = parseInt(six);
+			six++;
+			document.cookie = `6=${six};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 			break;
 	}
 
-	
-
 	if (won == true) {
 		seven = parseInt(seven);
-		seven++
+		seven++;
 		document.cookie = `7=${seven};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 	}
 
 	eight = parseInt(eight);
-	console.log(typeof(eight))
-	eight++
+	console.log(typeof eight);
+	eight++;
 
 	document.cookie = `8=${eight};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
-	
 
 	console.log(document.cookie);
 
+	let leader = document.getElementById("leaderboard");
+	document.getElementById("played").innerHTML = eight;
+	document.getElementById("won").innerHTML = seven;
+	let ratio = (seven / eight) * 100;
+	document.getElementById("ratio").innerHTML = Math.ceil(ratio) + "%";
+	leader.style.display = "block";
+	document.getElementById("canvas").style.display = "none";
+	document.getElementById("keyboard").style.display = "none";
 
-	let leader = document.getElementById("leaderboard")
-	document.getElementById("played").innerHTML = eight
-	document.getElementById("won").innerHTML = seven
-	let ratio = ((seven) / eight ) * 100
-	document.getElementById("ratio").innerHTML = (Math.ceil(ratio) + "%")
-	leader.style.display= "block"
-	document.getElementById("canvas").style.display = "none"
-	document.getElementById("keyboard").style.display = "none" 	
-
-	let order = document.getElementsByClassName("order")
-	let orderList = [one, two, three, four, five, six, seven, eight]
-	for (let i=0; i<order.length; i++) {
-		order[i].innerHTML += orderList[i]
+	let order = document.getElementsByClassName("order");
+	let orderList = [one, two, three, four, five, six, seven, eight];
+	for (let i = 0; i < order.length; i++) {
+		order[i].innerHTML += orderList[i];
 	}
-
 }
 
 function enter() {
@@ -208,14 +191,20 @@ function enter() {
 		switch (box[i].dataset.valid) {
 			case "2":
 				thing.style.backgroundColor = "green";
+				box[i].style.border = "3px solid green";
 				break;
 			case "1":
 				thing.style.backgroundColor = "#b59f3b";
+				box[i].style.border = "3px solid #b59f3b";
 				break;
 			case "0":
 				thing.style.backgroundColor = "#3a3a3c";
+				box[i].style.border = "3px solid #3a3a3c";
 				break;
 		}
+
+		
+		
 	}
 
 	let x = [100, 300, 500, 700, 900];
@@ -284,6 +273,20 @@ function write(key) {
 			box[i].innerHTML = box[i].dataset.letter.toUpperCase();
 		} else {
 			box[i].innerHTML = "";
+		}
+
+		if (
+			box[i].dataset.letter != "" &&
+			box[i].dataset.letter != "undefined"
+		) {
+			box[i].style.border = "3px solid #565758";
+		}
+
+		if (
+			box[i].dataset.letter == "" ||
+			box[i].dataset.letter == "undefined"
+		) {
+			box[i].style.border = "3px solid rgb(36, 36, 36)";
 		}
 	}
 }
