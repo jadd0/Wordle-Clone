@@ -51,23 +51,28 @@ body {
 	}
 }
 
-@keyframes shake {
+@keyframes shake2 {
 	0% {
 		transform: translateX(0px);
+		/* -webkit-transform: translate3d(0px,0,0); */
 	}
 	25% {
 		transform: translateX(5px);
+		/* -webkit-transform: translate3d(5px,0,0); */
 	}
 
 	50% {
 		transform: translateX(0px);
+		/* -webkit-transform: translate3d(0px,0,0); */
 	}
 
 	75% {
 		transform: translateX(-5px);
+		/* -webkit-transform: translate3d(-5px,0,0); */
 	}
 }
-@-webkit-keyframes shake {
+
+/* @-webkit-keyframes shake {
 	0% {
 		-webkit-transform: translate3d(0px,0,0);
 	}
@@ -85,7 +90,7 @@ body {
 	100% {
 		-webkit-transform: translate3d(0px,0,0);
 	}
-}
+} */
 .box {
 	display: flex;
 	background-color: inherit;
@@ -113,9 +118,7 @@ body {
 }
 
 .shake1 {
-	-webkit-animation: shake 0.2s linear;
-	animation: shake 0.2s linear;
-	
+	animation: shake2 0.2s linear;
 }
 
 #keyboard {

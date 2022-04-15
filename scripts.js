@@ -299,7 +299,12 @@ function write(key) {
 function keyPress(letter) {
 	if (letter == "Enter" && done == false) {
 		enter(letter);
-		row[currentRow].classList.remove("shake1");
+		if (row[currentRow].classList.contains("shake1")){
+			setTimeout(() => {
+				row[currentRow].classList.remove("shake1");
+			}, 300);
+		}
+		
 	} else if (letter == "Backspace" && done == false) {
 		backspace();
 	}
