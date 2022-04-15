@@ -44,7 +44,6 @@ let done = false;
 let won = false;
 
 let one = new Number();
-// console.log(one);
 let two = new Number();
 let three = new Number();
 let four = new Number();
@@ -59,34 +58,32 @@ function isLetter(str) {
 
 function getCookieVal() {
 	let cookiearray = document.cookie.split("; ");
-	// console.log(cookiearray);
 	for (let i = 0; i < cookiearray.length; i++) {
-		console.log(cookiearray[i][0], cookiearray[i][2]);
-		
-		if (cookiearray[i][0] == 1) {
-			one = cookiearray[i][2];
+		let x = cookiearray[i].split("=")
+		if (x[0] == 1) {
+			one = x[1];
 		}
-		else if (cookiearray[i][0] == 2) {
-			two = cookiearray[i][2];
+		else if (x[0] == 2) {
+			two = x[1];
 		}
-		else if (cookiearray[i][0] == 3) {
-			three = cookiearray[i][2];
+		else if (x[0] == 3) {
+			three = x[1];
 		}
-		else if (cookiearray[i][0] == 4) {
-			four = cookiearray[i][2];
+		else if (x[0] == 4) {
+			four = x[1];
 		}
-		else if (cookiearray[i][0] == 5) {
-			five = cookiearray[i][2];
+		else if (x[0] == 5) {
+			five = x[1];
 		}
-		else if (cookiearray[i][0] == 6) {
-			six = cookiearray[i][2];
+		else if (x[0] == 6) {
+			six = x[1];
 		}
-		else if (cookiearray[i][0] == 7) {
+		else if (x[0] == 7) {
 			console.log("hello")
-			seven = cookiearray[i][2];
+			seven = x[1];
 		}
-		else if (cookiearray[i][0] == 8) {
-			eight = cookiearray[i][2];
+		else if (x[0] == 8) {
+			eight = x[1];
 		}		
 	}
 }
