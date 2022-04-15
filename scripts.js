@@ -180,10 +180,10 @@ function enter() {
 	) {
 		row[currentRow].classList.add("shake1");
 		if (row[currentRow].dataset.length != 5) {
-			alert("Please enter a 5 letter word and try again");
+			// alert("Please enter a 5 letter word and try again");
 			return;
 		}
-		alert("This is not a valid word");
+		// alert("This is not a valid word");
 		return;
 	}
 
