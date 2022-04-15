@@ -115,7 +115,7 @@ function finished() {
 		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
 			break;
 		case 4:
-			four = parseInt(onfoure)
+			four = parseInt(four)
 			four++
 		document.cookie = `4=${four
 		};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
