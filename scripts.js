@@ -1,3 +1,21 @@
+toastr.options = {
+	closeButton: false,
+	debug: true,
+	newestOnTop: true,
+	progressBar: false,
+	positionClass: "toast-top-center",
+	preventDuplicates: false,
+	onclick: null,
+	showDuration: "300",
+	hideDuration: "1000",
+	timeOut: "2000",
+	extendedTimeOut: "1000",
+	showEasing: "swing",
+	hideEasing: "linear",
+	showMethod: "fadeIn",
+	hideMethod: "fadeOut",
+};
+
 if (document.cookie.split(";").length < 6) {
 	document.cookie =
 		"1=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
@@ -56,6 +74,28 @@ function isLetter(str) {
 	return str.length === 1 && str.match(/[a-z]/i);
 }
 
+function showNotification(message) {
+	// document.getElementById("notification").innerHTML = message.toUpperCase();
+	// $("#notContainer").fadeIn(50)
+
+	// setTimeout(function() {
+	// 	// document.getElementById("notContainer").style.display = "none";
+	// 	$("#notContainer").fadeOut(200)
+	// }, 1500)
+	toastr.info(message.toUpperCase(), { color: "black" });
+	return;
+}
+
+function inCorrect(box) {
+	for (let p = 0; p < 5; p++) {
+		console.log(box[p])
+		setTimeout(function () {
+			box[p].classList.remove("shrunk");
+			box[p].classList.add("finish1");
+		}, 100*p);
+	}
+}
+
 function getCookieVal() {
 	let cookiearray = document.cookie.split("; ");
 	for (let i = 0; i < cookiearray.length; i++) {
@@ -82,6 +122,8 @@ function getCookieVal() {
 }
 
 // TODO add cookie to see which character is most common
+// TODO make it so remembers words if incomplete
+// TODO make refreshable and sharable
 
 function finished() {
 	done = true;
@@ -136,20 +178,22 @@ function finished() {
 
 	console.log(document.cookie);
 
-	let leader = document.getElementById("leaderboard");
-	document.getElementById("played").innerHTML = eight;
-	document.getElementById("won").innerHTML = seven;
-	let ratio = (seven / eight) * 100;
-	document.getElementById("ratio").innerHTML = Math.ceil(ratio) + "%";
-	leader.style.display = "block";
-	document.getElementById("canvas").style.display = "none";
-	document.getElementById("keyboard").style.display = "none";
+	setTimeout(function () {
+		document.getElementById("played").innerHTML = eight;
+		document.getElementById("won").innerHTML = seven;
+		let ratio = (seven / eight) * 100;
+		document.getElementById("ratio").innerHTML = Math.ceil(ratio) + "%";
+		document.getElementById("canvas").style.display = "none";
+		document.getElementById("keyboard").style.display = "none";
+		$("#leaderboard").fadeIn()
+		
 
-	let order = document.getElementsByClassName("order");
-	let orderList = [one, two, three, four, five, six, seven, eight];
-	for (let i = 0; i < order.length; i++) {
-		order[i].innerHTML += orderList[i];
-	}
+		let order = document.getElementsByClassName("order");
+		let orderList = [one, two, three, four, five, six, seven, eight];
+		for (let i = 0; i < order.length; i++) {
+			order[i].innerHTML += orderList[i];
+		}
+	}, 1500);
 }
 
 function enter() {
@@ -180,18 +224,19 @@ function enter() {
 	) {
 		row[currentRow].classList.add("shake1");
 		if (row[currentRow].dataset.length != 5) {
-			// alert("Please enter a 5 letter word and try again");
+			console.log("hello1");
+			showNotification("not enough letters");
 			return;
 		}
-		// alert("This is not a valid word");
+		showNotification("word not in list");
 		return;
 	}
 
 	function colorChange(i, thing) {
 		switch (box[i].dataset.valid) {
 			case "2":
-				thing.style.backgroundColor = "green";
-				thing.style.border = "3px solid green";
+				thing.style.backgroundColor = "#538d4e";
+				thing.style.border = "3px solid #538d4e";
 				break;
 			case "1":
 				thing.style.backgroundColor = "#b59f3b";
@@ -202,9 +247,6 @@ function enter() {
 				thing.style.border = "3px solid #3a3a3c";
 				break;
 		}
-
-		
-		
 	}
 
 	let x = [100, 400, 700, 1000, 1300];
@@ -212,14 +254,15 @@ function enter() {
 	for (let i = 0; i < box.length; i++) {
 		setTimeout(() => {
 			box[i].classList.remove("types");
-			box[i].classList.add("shrunk");
+			box[i].classList = ("box shrunk");
+			
 		}, x[i]);
 	}
 
 	for (let i = 0; i < box.length; i++) {
 		setTimeout(() => {
 			colorChange(i, box[i]);
-		}, x[i]+310);
+		}, x[i] + 310);
 	}
 
 	for (let i = 0; i < box.length; i++) {
@@ -230,18 +273,40 @@ function enter() {
 	}
 
 	setTimeout(() => {
+		let box = row[currentRow - 1].getElementsByClassName("box");
 		if (row[currentRow - 1].dataset.word == chosenWord) {
-			alert("This is the correct word!");
+			const lostWords = [
+				0,
+				"phenomenal",
+				"magnificent",
+				"brilliant",
+				"great",
+				"good",
+				"phew",
+			];
+			setTimeout(function () {
+				inCorrect(box);
+				showNotification(lostWords[currentRow]);
+			}, 700);
 			won = true;
-			finished();
+			setTimeout(function () {
+				finished();
+			}, 1500);
 		} else if (currentRow == row.length) {
 			if (row[currentRow] != chosenWord) {
-				alert(`You lost! The word was ${chosenWord}`);
-				finished();
+				setTimeout(function () {
+					showNotification(chosenWord);
+				}, 500);
+				
+				setTimeout(function () {
+					finished();
+				}, 1500);
 			} else {
-				alert("This is the correct word!");
 				won = true;
-				finished();
+				setTimeout(function () {
+					inCorrect(box);
+					finished();
+				}, 1500);
 			}
 		}
 	}, 1400);
@@ -299,12 +364,11 @@ function write(key) {
 function keyPress(letter) {
 	if (letter == "Enter" && done == false) {
 		enter(letter);
-		if (row[currentRow].classList.contains("shake1")){
+		if (row[currentRow].classList.contains("shake1")) {
 			setTimeout(() => {
 				row[currentRow].classList.remove("shake1");
 			}, 300);
 		}
-		
 	} else if (letter == "Backspace" && done == false) {
 		backspace();
 	}

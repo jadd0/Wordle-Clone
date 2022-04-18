@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="styles.css">
+   
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="CodeSeven-toastr-50092cc\build\toastr.css" rel="stylesheet"/>
+    <script src="CodeSeven-toastr-50092cc\toastr.js"></script>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -45,33 +49,41 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V9TNQN" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    
+    <div id="notContainer" class="notContainer">
+        <div id="notification" class="notification">
+  
+        </div>
+    </div>
 
+    
     <div id="leaderboard">
         <div class="h1Holder">
-            <h1>Results</h1>
+            <h1>RESULTS</h1>
         </div>
 
-        <div class="results">
-            <div class="played">
-                <h2>Played</h2>
-            </div>
-
-            <div class="won">
-                <h2>Won</h2>
-
-            </div>
-            <div class="ratio">
-                <h2>Ratio</h2>
-            </div>
-        </div>
         <div class="spanHolder">
             <span id="played">1</span>
             <span id="won">2</span>
             <span id="ratio">3</span>
         </div>
 
+        <div class="results">
+            <div class="played">
+                <h2>PLAYED</h2>
+            </div>
+
+            <div class="won">
+                <h2>WON</h2>
+
+            </div>
+            <div class="ratio">
+                <h2>RATIO</h2>
+            </div>
+        </div>
+
         <div class="h1Holder">
-            <h2 class="guess">Guess Distribution</h2>
+            <h2 class="guess">GUESS DISTRIBUTION</h2>
         </div>
         
 
@@ -106,6 +118,10 @@
                 6: 
             </div>
         </div>
+
+        <button id="retry" onclick="location.reload()">
+            PLAY AGAIN
+        </button>
 
 
 
