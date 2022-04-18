@@ -35,23 +35,6 @@ if (document.cookie.split(";").length < 6) {
 		"8=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT";
 }
 
-document.cookie =
-	"one=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
-document.cookie =
-	"two=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
-document.cookie =
-	"three=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001  00:00:00 GMT";
-document.cookie =
-	"four=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
-document.cookie =
-	"five=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
-document.cookie =
-	"six=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
-document.cookie =
-	"played=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
-document.cookie =
-	"won=0;secure=true;SameSight=lax;expires=Thu, 01 Jan 2001 00:00:00 GMT";
-
 let row = document.getElementsByClassName("row");
 let currentRow = 0;
 let box = row[currentRow].getElementsByClassName("box");
@@ -60,6 +43,7 @@ console.log(chosenWord);
 let chosenList = chosenWord.split("");
 let done = false;
 let won = false;
+let animating = false;
 
 let one = new Number();
 let two = new Number();
@@ -231,7 +215,7 @@ function enter() {
 		showNotification("word not in list");
 		return;
 	}
-
+	
 	function colorChange(i, thing) {
 		switch (box[i].dataset.valid) {
 			case "2":
@@ -249,20 +233,20 @@ function enter() {
 		}
 	}
 
-	let x = [100, 400, 700, 1000, 1300];
 
 	for (let i = 0; i < box.length; i++) {
+		animating = true;
 		setTimeout(() => {
 			box[i].classList.remove("types");
 			box[i].classList = ("box shrunk");
 			
-		}, x[i]);
+		}, 100+(300*i));
 	}
 
 	for (let i = 0; i < box.length; i++) {
 		setTimeout(() => {
 			colorChange(i, box[i]);
-		}, x[i] + 310);
+		}, (100+(300*i)) + 310);
 	}
 
 	for (let i = 0; i < box.length; i++) {
@@ -309,9 +293,14 @@ function enter() {
 				}, 1500);
 			}
 		}
+		setTimeout(function () {
+			animating = false;
+		},600)
+		
 	}, 1400);
-	currentRow++;
-
+	currentRow++
+	
+	
 	return;
 }
 
@@ -362,6 +351,8 @@ function write(key) {
 }
 
 function keyPress(letter) {
+	console.log(animating)
+	if (animating) return
 	if (letter == "Enter" && done == false) {
 		enter(letter);
 		if (row[currentRow].classList.contains("shake1")) {
