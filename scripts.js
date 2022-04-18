@@ -96,7 +96,7 @@ ${sharable[3].toString()}
 ${sharable[4].toString()}
 ${sharable[5].toString()}
 
-Play now => https://jadd.live`;
+Try to beat my score! Play now => https://jadd.live`;
 
 	navigator.clipboard.writeText(copy);
 }
