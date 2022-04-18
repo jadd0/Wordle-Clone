@@ -294,13 +294,15 @@ function enter() {
 			}
 		}
 		setTimeout(function () {
-			animating = false;
+			if (row[currentRow-1].dataset.word != chosenWord) {
+				animating = false;
+			}
+			
+			
 		},600)
 		
 	}, 1400);
 	currentRow++
-	
-	
 	return;
 }
 
@@ -351,19 +353,18 @@ function write(key) {
 }
 
 function keyPress(letter) {
-	console.log(animating)
 	if (animating) return
-	if (letter == "Enter" && done == false) {
+	if (letter == "Enter" && !done) {
 		enter(letter);
 		if (row[currentRow].classList.contains("shake1")) {
 			setTimeout(() => {
 				row[currentRow].classList.remove("shake1");
 			}, 300);
 		}
-	} else if (letter == "Backspace" && done == false) {
+	} else if (letter == "Backspace" && !done) {
 		backspace();
 	}
-	if (done == false) {
+	if (!done) {
 		write(letter);
 	}
 }
