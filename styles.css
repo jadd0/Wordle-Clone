@@ -194,7 +194,7 @@ body {
 	width: 450px;
 	height: auto;
 	background-color: #232324;
-	display: none;
+	display: block;
 }
 
 span {
@@ -218,7 +218,6 @@ h2,
 #played,
 #ratio {
 	margin: 0 auto;
-	
 }
 
 .played,
@@ -227,7 +226,6 @@ h2,
 #played,
 #won,
 #ratio {
-	
 	display: flex;
 	justify-content: center;
 	width: 33%;
@@ -260,14 +258,26 @@ h2,
 	margin-top: 20px;
 }
 
-#retry {
+
+#boxForTwo {
+	width: 85%;
 	display: flex;
-	text-align: center;
-	justify-content: center;
-	line-height: 225%;
 	margin: 0 auto;
+	padding-bottom: 10px;
+}
+
+#retry,
+#share {
+	text-align: center;
+	place-content: center;
+	line-height: 225%;
+	margin: 10px;
 	height: 50px;
-	width: 50%;
+	width: 45%;
 	font-size: 20px;
 	font-weight: 550;
+}
+
+#share {
+	background-color: #538d4e;
 }

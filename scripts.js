@@ -58,6 +58,49 @@ function isLetter(str) {
 	return str.length === 1 && str.match(/[a-z]/i);
 }
 
+function share() {
+	let sharable = [["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"]];
+	for (let i = 0; i < currentRow; i++) {
+		if (row[i].dataset.word.length > 0) {
+			sharable[i] = ""
+		}
+		for (let j = 0; j < row.length; j++) {
+			switch (row[i].dataset.valid[j]) {
+				case "2":
+					// sharable[i].push("🟩")
+					sharable[i] += "🟩";
+					break;
+				case "1":
+					// sharable[i].push("🟨")
+					sharable[i] += "🟨";
+					break;
+				case "0":
+					// sharable[i].push("⬜")
+					sharable[i] += "◻️";
+					break;
+			}
+		}
+	}
+	for (let i = 0; i < sharable.length; i++) {
+		console.log(sharable[i]);
+	}
+
+	let copy = `
+Jadd.Live
+${currentRow}/6
+
+${sharable[0].toString()}
+${sharable[1].toString()}
+${sharable[2].toString()}
+${sharable[3].toString()}
+${sharable[4].toString()}
+${sharable[5].toString()}
+
+Play now => https://jadd.live`;
+
+	navigator.clipboard.writeText(copy);
+}
+
 function showNotification(message) {
 	// document.getElementById("notification").innerHTML = message.toUpperCase();
 	// $("#notContainer").fadeIn(50)
@@ -72,11 +115,11 @@ function showNotification(message) {
 
 function inCorrect(box) {
 	for (let p = 0; p < 5; p++) {
-		console.log(box[p])
+		console.log(box[p]);
 		setTimeout(function () {
 			box[p].classList.remove("shrunk");
 			box[p].classList.add("finish1");
-		}, 100*p);
+		}, 100 * p);
 	}
 }
 
@@ -169,8 +212,7 @@ function finished() {
 		document.getElementById("ratio").innerHTML = Math.ceil(ratio) + "%";
 		document.getElementById("canvas").style.display = "none";
 		document.getElementById("keyboard").style.display = "none";
-		$("#leaderboard").fadeIn()
-		
+		$("#leaderboard").fadeIn();
 
 		let order = document.getElementsByClassName("order");
 		let orderList = [one, two, three, four, five, six, seven, eight];
@@ -215,7 +257,7 @@ function enter() {
 		showNotification("word not in list");
 		return;
 	}
-	
+
 	function colorChange(i, thing) {
 		switch (box[i].dataset.valid) {
 			case "2":
@@ -233,20 +275,18 @@ function enter() {
 		}
 	}
 
-
 	for (let i = 0; i < box.length; i++) {
 		animating = true;
 		setTimeout(() => {
 			box[i].classList.remove("types");
-			box[i].classList = ("box shrunk");
-			
-		}, 100+(300*i));
+			box[i].classList = "box shrunk";
+		}, 100 + 300 * i);
 	}
 
 	for (let i = 0; i < box.length; i++) {
 		setTimeout(() => {
 			colorChange(i, box[i]);
-		}, (100+(300*i)) + 310);
+		}, 100 + 300 * i + 310);
 	}
 
 	for (let i = 0; i < box.length; i++) {
@@ -254,6 +294,10 @@ function enter() {
 			let back = document.getElementById(box[i].dataset.letter);
 			colorChange(i, back);
 		}, 1400);
+	}
+
+	for (let i = 0; i < box.length; i++) {
+		row[currentRow].dataset.valid += box[i].dataset.valid.toString();
 	}
 
 	setTimeout(() => {
@@ -281,7 +325,7 @@ function enter() {
 				setTimeout(function () {
 					showNotification(chosenWord);
 				}, 500);
-				
+
 				setTimeout(function () {
 					finished();
 				}, 1500);
@@ -294,15 +338,12 @@ function enter() {
 			}
 		}
 		setTimeout(function () {
-			if (row[currentRow-1].dataset.word != chosenWord) {
+			if (row[currentRow - 1].dataset.word != chosenWord) {
 				animating = false;
 			}
-			
-			
-		},600)
-		
+		}, 600);
 	}, 1400);
-	currentRow++
+	currentRow++;
 	return;
 }
 
@@ -353,7 +394,7 @@ function write(key) {
 }
 
 function keyPress(letter) {
-	if (animating) return
+	if (animating) return;
 	if (letter == "Enter" && !done) {
 		enter(letter);
 		if (row[currentRow].classList.contains("shake1")) {
