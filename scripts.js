@@ -59,46 +59,37 @@ function isLetter(str) {
 }
 
 function share() {
-	let sharable = [["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"], ["◻️◻️◻️◻️◻️"]];
+	let sharable = [["◻️◻️◻️◻️◻️"] * currentRow];
 	for (let i = 0; i < currentRow; i++) {
 		if (row[i].dataset.word.length > 0) {
-			sharable[i] = ""
+			sharable[i] = "";
 		}
 		for (let j = 0; j < row.length; j++) {
 			switch (row[i].dataset.valid[j]) {
 				case "2":
-					// sharable[i].push("🟩")
 					sharable[i] += "🟩";
 					break;
 				case "1":
-					// sharable[i].push("🟨")
 					sharable[i] += "🟨";
 					break;
 				case "0":
-					// sharable[i].push("⬜")
 					sharable[i] += "◻️";
 					break;
 			}
 		}
 	}
-	for (let i = 0; i < sharable.length; i++) {
-		console.log(sharable[i]);
-	}
-
 	let copy = `
 Jadd.Live
 ${currentRow}/6
 
-${sharable[0].toString()}
-${sharable[1].toString()}
-${sharable[2].toString()}
-${sharable[3].toString()}
-${sharable[4].toString()}
-${sharable[5].toString()}
-
-Try to beat my score! Play now => https://jadd.live`;
+`;
+	for (let i = 0; i < sharable.length; i++) {
+		copy += `${sharable[0]}\n`;
+	}
+	copy += `\nTry to beat my score! Play now => https://jadd.live`;
 
 	navigator.clipboard.writeText(copy);
+	toastr.info("Copied to clipboard")
 }
 
 function showNotification(message) {
@@ -115,7 +106,6 @@ function showNotification(message) {
 
 function inCorrect(box) {
 	for (let p = 0; p < 5; p++) {
-		console.log(box[p]);
 		setTimeout(function () {
 			box[p].classList.remove("shrunk");
 			box[p].classList.add("finish1");
@@ -140,7 +130,6 @@ function getCookieVal() {
 		} else if (x[0] == 6) {
 			six = x[1];
 		} else if (x[0] == 7) {
-			console.log("hello");
 			seven = x[1];
 		} else if (x[0] == 8) {
 			eight = x[1];
@@ -198,12 +187,9 @@ function finished() {
 	}
 
 	eight = parseInt(eight);
-	console.log(typeof eight);
 	eight++;
 
 	document.cookie = `8=${eight};secure=true;SameSight=lax;expires=Thu, 01 Jan 2023 00:00:00 GMT`;
-
-	console.log(document.cookie);
 
 	setTimeout(function () {
 		document.getElementById("played").innerHTML = eight;
@@ -250,7 +236,6 @@ function enter() {
 	) {
 		row[currentRow].classList.add("shake1");
 		if (row[currentRow].dataset.length != 5) {
-			console.log("hello1");
 			showNotification("not enough letters");
 			return;
 		}
