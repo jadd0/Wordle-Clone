@@ -197,6 +197,7 @@ body {
 	height: auto;
 	background-color: #232324;
 	display: none;
+	border-radius: 20px;
 }
 
 span {
@@ -269,6 +270,7 @@ h2,
 
 #retry,
 #share {
+	border-radius: 20px;
 	text-align: center;
 	place-content: center;
 	line-height: 225%;
@@ -278,6 +280,20 @@ h2,
 	font-size: 20px;
 	font-weight: 550;
 	color: black;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+#retry:hover {
+	background-color: #ffffff;
+}
+
+#share:hover {
+	background-color: #67ab62;
+}
+
+#retry {
+	background-color: rgb(167, 167, 167);
 }
 
 #share {
