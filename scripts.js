@@ -72,14 +72,14 @@ function share() {
 					sharable[i] += "🟨";
 					break;
 				case "0":
-					sharable[i] += "◻️";
+					sharable[i] += "⬛";
 					break;
 			}
 		}
 	}
 	// console.log(sharable);
-	let copy = `
-Jadd.Live
+	let copy = 
+`Jadd.Live
 ${currentRow}/6
 
 `;
