@@ -59,11 +59,10 @@ function isLetter(str) {
 }
 
 function share() {
-	let sharable = [["◻️◻️◻️◻️◻️"] * currentRow];
+	console.log(currentRow)
+	let sharable = [[],[],[],[],[],[]];
+	console.log(sharable)
 	for (let i = 0; i < currentRow; i++) {
-		if (row[i].dataset.word.length > 0) {
-			sharable[i] = "";
-		}
 		for (let j = 0; j < row.length; j++) {
 			switch (row[i].dataset.valid[j]) {
 				case "2":
@@ -78,13 +77,14 @@ function share() {
 			}
 		}
 	}
+	// console.log(sharable);
 	let copy = `
 Jadd.Live
 ${currentRow}/6
 
 `;
-	for (let i = 0; i < sharable.length; i++) {
-		copy += `${sharable[0]}\n`;
+	for (let i = 0; i < currentRow; i++) {
+		copy += `${sharable[i]}\n`;
 	}
 	copy += `\nTry to beat my score! Play now => https://jadd.live`;
 
